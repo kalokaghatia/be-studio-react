@@ -13,4 +13,8 @@ export class UsersService {
   async createUser(email: string, password: string): Promise<User> {
     return this.usersRepo.create({ email, password });
   }
+
+  async deleteUser(email: string): Promise<User | null> {
+    return this.usersRepo.deleteByEmail(email);
+  }
 }

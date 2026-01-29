@@ -15,4 +15,8 @@ export class UsersRepository {
     const newUser = new this.userModel(user);
     return newUser.save();
   }
+  
+  async deleteByEmail(email: string): Promise<User | null> {
+    return this.userModel.findOneAndDelete({ email }).exec();
+  }
 }
