@@ -23,8 +23,8 @@ async function bootstrap() {
   });
 
   const configService = app.get(ConfigService);
-  const port = configService.get<number>('server.port');
-  await app.listen(port!, '0.0.0.0');
+  const port = configService.getOrThrow<number>('server.port');
+  await app.listen(port, '0.0.0.0');
   console.log(`🚀 Server listening on port ${port}`);
 }
 
