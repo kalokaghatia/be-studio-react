@@ -13,6 +13,10 @@ export const envSchema = Joi.object({
     MONGO_URI: Joi.string()
         .required()
         .messages({ 'any.required': '"MONGO_URI" è obbligatoria per connettersi al database' }),
+        
+    MONGO_DB: Joi.string()
+        .required()
+        .messages({ 'any.required': '"MONGO_DB" è obbligatorio per connettersi al database' }),
 
     JWT_SECRET: Joi.string()
         .required(),

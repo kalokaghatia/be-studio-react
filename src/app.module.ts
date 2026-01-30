@@ -4,6 +4,7 @@ import configuration from './config/configuration';
 import { envSchema } from './config/env.validation';
 import { MongoModule } from './database/mongo.module';
 import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { UsersModule } from './users/users.module';
     }),
     MongoModule,
     UsersModule,
+    AuthModule,
   ],
 })
 export class AppModule {}

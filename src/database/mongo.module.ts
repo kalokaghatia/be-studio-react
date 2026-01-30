@@ -8,9 +8,10 @@ import { ConfigService, ConfigModule } from '@nestjs/config';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
-        uri: configService.get<string>('mongo.uri')
+        uri: configService.get<string>('mongo.uri'),
+        dbName: configService.get<string>('mongo.db'),
       }),
     }),
   ],
 })
-export class MongoModule {}
+export class MongoModule { }
