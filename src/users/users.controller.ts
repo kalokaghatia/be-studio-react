@@ -8,13 +8,22 @@ import {
   Param,
   Post,
   Query,
+  Req,
+  UseGuards,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('users')
 export class UsersController {
   constructor(private usersService: UsersService) {}
 
+  @UseGuards(JwtAuthGuard)
+  @Get('profile')
+  getProfile(@Req() req) {
+    return { message: 'Endpoint protetto!', user: req.user };
+  }
+  
   @Get('findByEmail')
   async findByEmail(@Query('email') email: string) {
     const user = await this.usersService.findByEmail(email);
