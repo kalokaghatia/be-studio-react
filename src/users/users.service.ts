@@ -5,7 +5,7 @@ import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsersService {
-  constructor(private usersRepo: UsersRepository) {}
+  constructor(private usersRepo: UsersRepository) { }
 
   async findByEmail(email: string): Promise<User | null> {
     return this.usersRepo.findByEmail(email);
@@ -19,5 +19,16 @@ export class UsersService {
   async deleteUser(email: string): Promise<User | null> {
     return this.usersRepo.deleteByEmail(email);
   }
-  
+
+  async setRefreshToken(userId: string, refreshToken: string) {
+    return this.usersRepo.setRefreshToken(userId, refreshToken);
+  }
+
+  async getUserByRefreshToken(refreshToken: string) {
+    return this.usersRepo.getUserByRefreshToken(refreshToken);
+  }
+
+  async removeRefreshToken(userId: string) {
+    return this.usersRepo.removeRefreshToken(userId);
+  }
 }
